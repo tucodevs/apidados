@@ -1,0 +1,3 @@
+([('main_gui',
+   '/Users/arthurmartinstorres/Desktop/viaverde/apidados/src/dist/main_gui',
+   'EXECUTABLE')],)

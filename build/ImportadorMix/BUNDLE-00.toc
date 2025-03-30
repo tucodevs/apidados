@@ -1,0 +1,3 @@
+([('ImportadorMix',
+   '/Users/arthurmartinstorres/Desktop/viaverde/apidados/dist/ImportadorMix',
+   'EXECUTABLE')],)

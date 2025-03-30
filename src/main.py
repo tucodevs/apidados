@@ -1,16 +1,22 @@
-from eventos.tr_excesso_rotacao import importar_excesso_rotacao
-from tipos_eventos import atualizar_tipos_eventos
+import time
+import schedule
+from importador_lote import importar_eventos_lote
 
-def main():
+def tarefa():
+    print("⏰ Executando importação automática...")
     try:
-        print("🔄 Atualizando tipos de eventos...")
-        atualizar_tipos_eventos()
-
-        print("📥 Importando eventos de Excesso de Rotação...")
-        importar_excesso_rotacao()
-
+        importar_eventos_lote()
     except Exception as e:
-        print("❌ Erro durante execução:", e)
+        print("❌ Erro na importação:", e)
+
+def iniciar_agendador():
+    schedule.every(15).minutes.do(tarefa)
+    print("🔁 Agendador iniciado. Rodando a cada 15 minutos.")
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
 
 if __name__ == "__main__":
-    main()
+    print("🚀 Iniciando aplicação...")
+    tarefa()  # executa a primeira importação logo ao iniciar
+    iniciar_agendador()

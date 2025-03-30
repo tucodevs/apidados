@@ -40,6 +40,9 @@ def inserir_tipos_eventos(cursor, tipo):
     }
     cursor.execute(sql, dados)
 
+    # Retorna True se a linha foi inserida ou atualizada
+    return cursor.rowcount > 0
+
 def atualizar_tipos_eventos():
     token = autenticar()
     tipos = buscar_tipos_eventos(token)
@@ -51,14 +54,15 @@ def atualizar_tipos_eventos():
     conn = conectar_banco()
     cursor = conn.cursor()
 
+    atualizados = 0
     for tipo in tipos:
         descricao = tipo.get("Description", "")
         if descricao.strip().startswith("(Tr)"):
-            inserir_tipos_eventos(cursor, tipo)
-
-
+            if inserir_tipos_eventos(cursor, tipo):
+                atualizados += 1
 
     conn.commit()
     cursor.close()
     conn.close()
-    print(f"{len(tipos)} tipos de eventos atualizados com sucesso.")
+
+    print(f"{atualizados} tipos de eventos (Tr) atualizados ou inseridos no banco.")
