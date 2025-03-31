@@ -36,3 +36,5 @@ Dentro da pasta onde estão `main_lote.py` e `.env`, rode:
 - Gerar um log por execução
 
 Dúvidas? É só me chamar aqui 😄
+
+.
