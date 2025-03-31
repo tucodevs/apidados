@@ -37,4 +37,4 @@ Dentro da pasta onde estão `main_lote.py` e `.env`, rode:
 
 Dúvidas? É só me chamar aqui 😄
 
-.
+..
