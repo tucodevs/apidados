@@ -9,9 +9,9 @@ from threading import Thread
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 import mysql.connector
-from db import conectar_banco
-from importador_lote import importar_eventos_lote
-from auth import autenticar
+from core.db import conectar_banco
+from core.importador_lote import importar_eventos_lote
+from core.auth import autenticar
 
 # Detectar base path (modo frozen para .exe)
 if getattr(sys, 'frozen', False):
