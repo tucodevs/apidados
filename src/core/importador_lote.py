@@ -3,8 +3,8 @@ import requests
 import time
 from dotenv import load_dotenv
 from datetime import datetime, timedelta, timezone
-from auth import autenticar
-from db import conectar_banco
+from core.auth import autenticar
+from core.db import conectar_banco
 
 load_dotenv()
 
