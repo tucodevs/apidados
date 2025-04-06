@@ -12,6 +12,10 @@ import mysql.connector
 from core.db import conectar_banco
 from core.importador_lote import importar_eventos_lote
 from core.auth import autenticar
+from endpoints.drivers import importar_drivers
+from endpoints.assets import importar_assets
+from endpoints.trips import importar_trips
+
 
 # Detectar base path (modo frozen para .exe)
 if getattr(sys, 'frozen', False):
@@ -109,9 +113,27 @@ def executar_importacao():
         for tipo, valores in resultado.items():
             log += f"📥 {tipo}: {valores['inseridos']} inseridos de {valores['recebidos']}\n"
             total += valores['inseridos']
-        log += f"\n✅ Total inserido: {total}\n"
+        log += f"\n✅ Total de eventos inseridos: {total}\n\n"
+
+        # 🚚 Importação de drivers
+        log += "👥 Importando motoristas...\n"
+        importar_drivers()
+        log += "✅ Motoristas importados com sucesso.\n"
+
+        # 🚘 Importação de assets
+        log += "🚘 Importando assets...\n"
+        importar_assets()
+        log += "✅ Assets importados com sucesso.\n"
+
+        # Importação das Trips
+        log += "🧭 Importando trips...\n"
+        importar_trips()
+        log += "✅ Trips importadas com sucesso.\n"
+
+
         atualizar_log(log)
         proxima_execucao = datetime.now() + timedelta(minutes=15)
+
     except Exception as e:
         atualizar_log(f"❌ Erro na importação: {e}")
 
