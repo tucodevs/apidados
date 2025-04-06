@@ -47,8 +47,6 @@ def importar_trips():
     since_token = gerar_since_token()
     token = autenticar()
     resposta = buscar_trips(token, since_token)
-    print("🔍 Resposta recebida da API:")
-    print(resposta)
 
     if isinstance(resposta, dict) and "Trips" in resposta:
         trips = resposta["Trips"]
