@@ -35,7 +35,7 @@ def importar_subtrips():
     print(f"🔍 Requisitando trips com subtrips...")
     response = requests.get(url, headers=headers)
     if response.status_code != 200:
-        print(f"❌ Erro ao buscar trips: {response.status_code} - {response.text}")
+        print(f"❌ Erro ao buscar trips: {response.status_code}")
         return
 
     trips = response.json()
@@ -50,6 +50,7 @@ def importar_subtrips():
     for trip in trips:
         trip_id = trip.get("TripId")
         asset_id = trip.get("AssetId")
+        
         driver_id = trip.get("DriverId")
         subtrips = trip.get("SubTrips", [])
 
