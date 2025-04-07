@@ -36,6 +36,7 @@ def importar_subtrips():
     response = requests.get(url, headers=headers)
     if response.status_code != 200:
         print(f"❌ Erro ao buscar trips: {response.status_code}")
+
         return
 
     trips = response.json()

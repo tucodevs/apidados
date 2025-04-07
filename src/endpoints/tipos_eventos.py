@@ -1,8 +1,8 @@
 import requests
 import os
 from dotenv import load_dotenv
-from db import conectar_banco
-from auth import autenticar
+from core.db import conectar_banco
+from core.auth import autenticar
 
 load_dotenv()
 
@@ -43,7 +43,7 @@ def inserir_tipos_eventos(cursor, tipo):
     # Retorna True se a linha foi inserida ou atualizada
     return cursor.rowcount > 0
 
-def atualizar_tipos_eventos():
+def importar_tipos_eventos():
     token = autenticar()
     tipos = buscar_tipos_eventos(token)
 
